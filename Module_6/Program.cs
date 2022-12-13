@@ -74,6 +74,20 @@ namespace Module_6
         }
 
         /// <summary>
+        /// Существует ли файл?
+        /// </summary>
+        /// <returns></returns>
+        private static bool IsFileExist()
+        {
+            if (File.Exists(_filePathName))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Чтение файла и вывод на экран данных из файла
         /// </summary>
         private static void ReadData()
@@ -101,19 +115,6 @@ namespace Module_6
             {
                 Console.WriteLine("Не создано ни одной записи!");
             }
-        }
-        /// <summary>
-        /// Существует ли файл?
-        /// </summary>
-        /// <returns></returns>
-        private static bool IsFileExist()
-        {
-            if (File.Exists(_filePathName)) 
-            {
-                return true;
-            }
-
-            return false;
         }
 
         /// <summary>
