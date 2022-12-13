@@ -59,7 +59,7 @@ namespace Module_6
         /// </summary>
         private static void LinesNumberInFile()
         {
-            if (File.Exists(_filePathName))     //Проверка на наличие файла
+            if (IsFileExist())     //Проверка на наличие файла
             {
                 using (var streamReader = new StreamReader(_filePathName))
                 {
@@ -78,21 +78,42 @@ namespace Module_6
         /// </summary>
         private static void ReadData()
         {
-            using (StreamReader streamReader = new StreamReader(_filePathName))
+            if (IsFileExist())
             {
-                string line;
-
-                while ((line = streamReader.ReadLine()) != null)
+                using (StreamReader streamReader = new StreamReader(_filePathName))
                 {
-                    string[] noteData = line.Split('#');
-                    Console.Write("\n");
-                    foreach (var item in noteData)
-                    {
-                        Console.Write($"\t{item,24}");
-                    }
+                    string line;
 
+                    while ((line = streamReader.ReadLine()) != null)
+                    {
+                        string[] noteData = line.Split('#');
+                        Console.Write("\n");
+
+                        foreach (var item in noteData)
+                        {
+                            Console.Write($"\t{item,24}");
+                        }
+
+                    }
                 }
             }
+            else
+            {
+                Console.WriteLine("Не создано ни одной записи!");
+            }
+        }
+        /// <summary>
+        /// Существует ли файл?
+        /// </summary>
+        /// <returns></returns>
+        private static bool IsFileExist()
+        {
+            if (File.Exists(_filePathName)) 
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
